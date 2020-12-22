@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreekGodRandom</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="god">
+        <h1 id="debug"></h1>
+        <p id="description"></p>
+    </div>
+    <button onclick="GenerateGod()">Generate A God</button>
+
+    <script>
+        function GenerateGod() {
+            let randomNumber = Math.floor(Math.random() * 14);
+            fetch("god.json")
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.sections.GreekGods[randomNumber].key);
+
+                    document.getElementById("description").innerHTML = data.sections.GreekGods[randomNumber].val;
+
+                    document.getElementById("debug").innerHTML = data.sections.GreekGods[randomNumber].key;
+
+
+                });
+        }
+    </script>
+
+</body>
+
+</html>
